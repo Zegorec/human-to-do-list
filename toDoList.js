@@ -26,7 +26,7 @@ const addTarget = () => {
     const createP = document.createElement('p');
     createP.classList.add('target-textContent');
     createP.textContent = textTarget.value;
-    // Функция обозначения сделанной хадачи
+    // Функция обозначения сделанной задачи
     const targetCompleted = () => {
       if (createInput.checked) {
         createP.classList.add('targetCompleted');
@@ -39,11 +39,14 @@ const addTarget = () => {
     createLabel.appendChild(createP);
     // Создание кнопки удаления
     const createButton = document.createElement('button');
-
     createButton.classList.add('button-delteTarget');
     createButton.type = 'button';
     createButton.textContent = 'Удалить';
     createDiv.appendChild(createButton);
+    const delteTarget = () => {
+      return createButton.parentNode.remove();
+    };
+    createButton.addEventListener('click', delteTarget);
     // Добавление элемента в список
     textTarget.placeholder = 'Поле ввода';
     return toDoList.appendChild(createDiv);

@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.toDoList {
+  background-color: #e7e6e1;
+
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.container-input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.content-toDoList {
+  background-color: #f2a154;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.target {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox-completed {
+  margin: 10px;
+}
+
+.target-textContent {
+  color: #314e52;
+
+  margin: 10px;
+}
+
+.button-delteTarget {
+  margin: 10px;
+}
+
+.input-target {
+  color: white;
+  background-color: #314e52;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.targetCompleted {
+  color: #e0292962;
+  text-decoration: underline;
+}

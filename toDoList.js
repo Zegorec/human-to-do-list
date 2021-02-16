@@ -4,8 +4,7 @@ const check = () => console.log('Работает');
 const textTarget = document.querySelector('.input-target');
 const buttonAddTarget = document.querySelector('.button-addTarget');
 const toDoList = document.querySelector('.content-toDoList');
-const targets = toDoList.children;
-console.log(targets);
+
 // Функция создания элемента
 const addTarget = () => {
   if (textTarget.value == '') {

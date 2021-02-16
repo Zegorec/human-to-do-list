@@ -58,6 +58,12 @@ h1 {
   background-color: #314e52;
 }
 
+.input-date {
+  color: white;
+  background-color: #314e52;
+  width: 50px;
+}
+
 label {
   display: flex;
   flex-direction: row;

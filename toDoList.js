@@ -1,4 +1,7 @@
 const check = () => console.log('Работает');
+const delteTarget = (item) => {
+  return item.parentNode.remove();
+};
 
 // Объявление исходных переменных
 const textTarget = document.querySelector('.input-target');
@@ -42,10 +45,8 @@ const addTarget = () => {
     createButton.type = 'button';
     createButton.textContent = 'Удалить';
     createDiv.appendChild(createButton);
-    const delteTarget = () => {
-      return createButton.parentNode.remove();
-    };
-    createButton.addEventListener('click', delteTarget);
+    
+    createButton.addEventListener('click', delteTarget(createButton));
     // Добавление элемента в список
     textTarget.placeholder = 'Поле ввода';
     return toDoList.appendChild(createDiv);

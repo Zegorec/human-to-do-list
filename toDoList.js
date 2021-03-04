@@ -10,7 +10,7 @@ const targetCompleted = (input, tag) => {
   }
 };
 
-const createTarget = (text) => {
+const createTarget = (text, status) => {
   // Создание div
   const createDiv = document.createElement('div');
   createDiv.classList.add('target');
@@ -26,6 +26,10 @@ const createTarget = (text) => {
   const createP = document.createElement('p');
   createP.classList.add('target-textContent');
   createP.textContent = text.value;
+  if (status) {
+    createInput.checked = status;
+    createP.classList.add('targetCompleted');
+  }
   createInput.addEventListener('change', () =>
     targetCompleted(createInput, createP)
   );

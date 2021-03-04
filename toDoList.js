@@ -1,4 +1,9 @@
 let arr = JSON.parse(localStorage.getItem('toDo'));
+const lS = () => {
+  arr.forEach((elem) => {
+    createTarget(elem.content, elem.completed);
+  });
+};
 
 // Сохранение данных в массив
 const updateToDo = () => {
@@ -50,7 +55,11 @@ const createTarget = (text, status) => {
   // Создание p
   const createP = document.createElement('p');
   createP.classList.add('target-textContent');
-  createP.textContent = text.value;
+  if (text) {
+    createP.textContent = text;
+  } else {
+    createP.textContent = textTarget.value;
+  }
   if (status) {
     createInput.checked = status;
     createP.classList.add('targetCompleted');
@@ -58,7 +67,7 @@ const createTarget = (text, status) => {
   createInput.addEventListener('change', () =>
     targetCompleted(createInput, createP)
   );
-  text.value = '';
+  textTarget.value = '';
   createLabel.appendChild(createP);
   // Создание кнопки удаления
   const createButton = document.createElement('button');
@@ -68,7 +77,7 @@ const createTarget = (text, status) => {
   createDiv.appendChild(createButton);
   createButton.addEventListener('click', () => deleteTarget(createButton));
   // Добавление элемента в список
-  text.placeholder = 'Поле ввода';
+  textTarget.placeholder = 'Поле ввода';
   toDoList.appendChild(createDiv);
   saveLocalStorage();
 };
@@ -82,13 +91,11 @@ const addTarget = () => {
   if (textTarget.value == '') {
     return (textTarget.placeholder = 'Долбаеб, задачу напиши');
   } else {
-    createTarget(textTarget);
+    createTarget();
   }
 };
 
 buttonAddTarget.addEventListener('click', addTarget);
 console.log(arr);
 
-arr.forEach((elem) => {
-  console.log(`elem content ${elem.content} elem completed ${elem.completed}`);
-})
+lS();

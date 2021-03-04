@@ -1,5 +1,5 @@
 const check = () => console.log('Работает');
-const delteTarget = (item) => {
+const deleteTarget = (item) => {
   return item.parentNode.remove();
 };
 
@@ -45,8 +45,8 @@ const addTarget = () => {
     createButton.type = 'button';
     createButton.textContent = 'Удалить';
     createDiv.appendChild(createButton);
-    
-    createButton.addEventListener('click', delteTarget(createButton));
+
+    createButton.addEventListener('click', () => deleteTarget(createButton));
     // Добавление элемента в список
     textTarget.placeholder = 'Поле ввода';
     return toDoList.appendChild(createDiv);
@@ -54,3 +54,5 @@ const addTarget = () => {
 };
 
 buttonAddTarget.addEventListener('click', addTarget);
+
+document.addEventListener('change', check)

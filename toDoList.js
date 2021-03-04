@@ -1,6 +1,30 @@
+let arr = JSON.parse(localStorage.getItem('toDo'));
+
+// Сохранение данных в массив
+const updateToDo = () => {
+  arr = [];
+  let arr1 = document.querySelectorAll('.target-textContent');
+  arr1.forEach((elem) => {
+    const forLocalStorage = {};
+    forLocalStorage.content = elem.textContent;
+    if (elem.classList.contains('targetCompleted')) {
+      forLocalStorage.completed = true;
+    } else {
+      forLocalStorage.completed = false;
+    }
+    arr.push(forLocalStorage);
+  });
+};
+
+const saveLocalStorage = () => {
+  updateToDo();
+  localStorage.setItem('toDo', JSON.stringify(arr));
+};
+
 const check = () => console.log('Работает');
 const deleteTarget = (item) => {
   item.parentNode.remove();
+  saveLocalStorage();
 };
 const targetCompleted = (input, tag) => {
   if (input.checked) {
@@ -8,6 +32,7 @@ const targetCompleted = (input, tag) => {
   } else {
     tag.classList.remove('targetCompleted');
   }
+  saveLocalStorage();
 };
 
 const createTarget = (text, status) => {
@@ -45,6 +70,7 @@ const createTarget = (text, status) => {
   // Добавление элемента в список
   text.placeholder = 'Поле ввода';
   toDoList.appendChild(createDiv);
+  saveLocalStorage();
 };
 
 // Объявление исходных переменных
@@ -61,3 +87,8 @@ const addTarget = () => {
 };
 
 buttonAddTarget.addEventListener('click', addTarget);
+console.log(arr);
+
+arr.forEach((elem) => {
+  console.log(`elem content ${elem.content} elem completed ${elem.completed}`);
+})

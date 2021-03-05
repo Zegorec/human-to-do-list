@@ -1,29 +1,29 @@
-let arr = JSON.parse(localStorage.getItem('toDo'));
+let apdateToDoArr = JSON.parse(localStorage.getItem('toDo'));
 const lS = () => {
-  arr.forEach((elem) => {
+  apdateToDoArr.forEach((elem) => {
     createTarget(elem.content, elem.completed);
   });
 };
 
 // Сохранение данных в массив
 const updateToDo = () => {
-  arr = [];
-  let arr1 = document.querySelectorAll('.target-textContent');
-  arr1.forEach((elem) => {
-    const forLocalStorage = {};
-    forLocalStorage.content = elem.textContent;
-    if (elem.classList.contains('targetCompleted')) {
-      forLocalStorage.completed = true;
-    } else {
-      forLocalStorage.completed = false;
-    }
-    arr.push(forLocalStorage);
-  });
+  const toDoArr = [...document.querySelectorAll('.target-textContent')];
+  const newToDoArr = toDoArr.map((elem) => {
+  const forLocalStorage = {};
+  forLocalStorage.content = elem.textContent;
+  if (elem.classList.contains('targetCompleted')) {
+    forLocalStorage.completed = true;
+  } else {
+    forLocalStorage.completed = false;
+  }
+  return forLocalStorage;
+});
+apdateToDoArr = newToDoArr
 };
 
 const saveLocalStorage = () => {
   updateToDo();
-  localStorage.setItem('toDo', JSON.stringify(arr));
+  localStorage.setItem('toDo', JSON.stringify(apdateToDoArr));
 };
 
 const check = () => console.log('Работает');
@@ -96,6 +96,7 @@ const addTarget = () => {
 };
 
 buttonAddTarget.addEventListener('click', addTarget);
-console.log(arr);
+document.addEventListener('DOMContentLoaded', lS())
 
-lS();
+
+

@@ -75,3 +75,7 @@ label {
   color: #e0292962;
   text-decoration: underline;
 }
+
+.hiddenDiv {
+  display: none;
+}

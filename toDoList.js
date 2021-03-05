@@ -1,6 +1,6 @@
-let apdateToDoArr = JSON.parse(localStorage.getItem('toDo'));
+let updateToDoArr = JSON.parse(localStorage.getItem('toDo'));
 const lS = () => {
-  apdateToDoArr.forEach((elem) => {
+  updateToDoArr.forEach((elem) => {
     createTarget(elem.content, elem.completed);
   });
 };
@@ -9,21 +9,21 @@ const lS = () => {
 const updateToDo = () => {
   const toDoArr = [...document.querySelectorAll('.target-textContent')];
   const newToDoArr = toDoArr.map((elem) => {
-  const forLocalStorage = {};
-  forLocalStorage.content = elem.textContent;
-  if (elem.classList.contains('targetCompleted')) {
-    forLocalStorage.completed = true;
-  } else {
-    forLocalStorage.completed = false;
-  }
-  return forLocalStorage;
-});
-apdateToDoArr = newToDoArr
+    const forLocalStorage = {};
+    forLocalStorage.content = elem.textContent;
+    if (elem.classList.contains('targetCompleted')) {
+      forLocalStorage.completed = true;
+    } else {
+      forLocalStorage.completed = false;
+    }
+    return forLocalStorage;
+  });
+  updateToDoArr = newToDoArr;
 };
 
 const saveLocalStorage = () => {
   updateToDo();
-  localStorage.setItem('toDo', JSON.stringify(apdateToDoArr));
+  localStorage.setItem('toDo', JSON.stringify(updateToDoArr));
 };
 
 const check = () => console.log('Работает');
@@ -83,6 +83,7 @@ const createTarget = (text, status) => {
 };
 
 // Объявление исходных переменных
+const selectFilter = document.querySelector('.filter-toDo');
 const textTarget = document.querySelector('.input-target');
 const buttonAddTarget = document.querySelector('.button-addTarget');
 const toDoList = document.querySelector('.content-toDoList');
@@ -96,7 +97,26 @@ const addTarget = () => {
 };
 
 buttonAddTarget.addEventListener('click', addTarget);
-document.addEventListener('DOMContentLoaded', lS())
-
-
-
+document.addEventListener('DOMContentLoaded', lS());
+selectFilter.addEventListener('change', (event) => {
+  const toDoArr = [...document.querySelectorAll('.target-textContent')];
+  if (event.currentTarget.value === 'Все') {
+    toDoArr.forEach((elem) => {
+      elem.parentNode.parentNode.classList.remove('hiddenDiv');
+    });
+  } else if (event.currentTarget.value === 'Выполненные') {
+    toDoArr.forEach((elem) => {
+      elem.parentNode.parentNode.classList.remove('hiddenDiv');
+      if (!elem.classList.contains('targetCompleted')) {
+        elem.parentNode.parentNode.classList.add('hiddenDiv');
+      }
+    });
+  } else if (event.currentTarget.value === 'Текущие') {
+    toDoArr.forEach((elem) => {
+      elem.parentNode.parentNode.classList.remove('hiddenDiv');
+      if (elem.classList.contains('targetCompleted')) {
+        elem.parentNode.parentNode.classList.add('hiddenDiv');
+      }
+    });
+  }
+});
